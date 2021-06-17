@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../content.css">
+    <link rel="stylesheet" href="../prism.css">
+    <script src="../prism.js"></script>
+    <title>Queue</title>
+</head>
+<body>
+    <nav>
+        Queue using Array
+    </nav>
+    <div class="super">
+        <h4>Implementation</h4>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdlib&gt;
+using namespace std;
+
+struct Queue
+{
+    int size;
+    int f;
+    int r;
+    int * arr;
+};
+
+int main(){
+    struct Queue * q = (struct Queue *)malloc(sizeof(struct Queue));
+    q-&gt;size = 10;
+    q-&gt;f = -1;
+    q-&gt;r = -1;
+    q-&gt;arr = (int *)malloc(q-&gt;size*sizeof(int));
+ return 0;
+}
+            </code></pre>
+        </div>
+        <br>
+
+        <h4>Functions</h4><br>
+
+
+        <h3>1. Traversal</h3>
+        <div class="container">
+            <pre><code class="language-cpp">void display(struct Queue * q){
+    for (int i = q-&gt;f+1; i &lt;= q-&gt;r; i++)
+    {
+        printf("%d ",q-&gt;arr[i]);
+    }
+    printf("\n");
+}
+            </code></pre>
+        </div>
+
+        <br>
+        <h3>2. isFull</h3>
+        <div class="container">
+            <pre><code class="language-cpp">int isFull(struct Queue * q){
+    if (q-&gt;r == q-&gt;size-1)
+    {
+        return 1;
+    }
+    return 0;
+}
+        </code></pre>
+        </div>
+
+        <br>
+        <h3>3. isEmpty</h3>
+        <div class="container">
+            <pre><code class="language-cpp">int isEmpty(struct Queue * q){
+    if (q-&gt;f == q-&gt;r)
+    {
+        return 1;
+    }
+    return 0;
+}
+            </code></pre>
+        </div>
+ <br>
+        <h3>4. Enqueue</h3>
+        <div class="container">
+            <pre><code class="language-cpp">void enqueue(struct Queue * q, int data){
+    if (!isFull(q))
+    {
+        q-&gt;r++;
+        q-&gt;arr[q-&gt;r] = data;
+    }
+    else{
+        printf("Queue overflow!\n");
+    }
+}
+            </code></pre>
+        </div>
+ <br>
+        <h3>5. Dequeue</h3>
+        <div class="container">
+            <pre><code class="language-cpp">int dequeue(struct Queue * q){
+    int d = -1;
+    if (!isEmpty(q))
+    {
+        q-&gt;f++;
+        d = q-&gt;arr[q-&gt;f];
+    }
+    else{
+        printf("Empty queue!\n");
+    }
+    return d;
+}
+            </code></pre>
+        </div>
+    </div>
+</body>
+</html>

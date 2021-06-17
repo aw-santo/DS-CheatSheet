@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../content.css">
+    <link rel="stylesheet" href="../prism.css">
+    <script src="../prism.js"></script>
+    <title>Linked List</title>
+</head>
+<body>
+    <nav>
+        Linked List
+    </nav>
+    <div class="super">
+        <h4>Implementation</h4>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdlib&gt;
+using namespace std;
+
+struct Node
+{
+    int data;
+    struct Node * next;
+};
+
+struct Node * createNode(int val){
+    struct Node * ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr-&gt;data = val;
+    return ptr;
+
+
+int main(){
+    struct Node * head;    
+    struct Node * second;    
+    struct Node * third;    
+    struct Node * forth;
+
+    head = createNode(1);
+    second = createNode(2);
+    third = createNode(3);
+    forth = createNode(4);
+
+    head-&gt;next = second;
+
+    second-&gt;next = third;
+
+    third-&gt;next = forth;
+
+    forth-&gt;next = NULL;
+
+    return 0;
+}
+            </code></pre>
+        </div>
+        <br>
+
+        <h4>Functions</h4><br>
+
+
+        <h3>1. Traversal</h3>
+        <div class="container">
+            <pre><code class="language-cpp">void linkedListTraversal(struct Node * ptr){
+    // struct Node * p = head;
+    while (ptr!=NULL)
+    {
+        printf("%d ",ptr-&gt;data);
+        ptr = ptr-&gt;next;
+    }
+    
+}
+            </code></pre>
+        </div>
+
+        <br>
+        <h3>2. Insertion</h3>
+        <div class="container">
+            <pre><code class="language-cpp">//1. Insert at the begining
+struct Node * insertStart(struct Node * head, int data){
+    struct Node * p = createNode();
+    p-&gt;data = data;
+    p-&gt;next = head;
+    return p;
+}
+
+//2. Insert at the end
+struct Node * insertEnd(struct Node * head, int data){
+    struct Node * ptr = createNode();
+    ptr-&gt;data = data;
+    struct Node * q = head;
+    while (q-&gt;next != NULL)
+    {
+        q = q-&gt;next;
+    }
+    q-&gt;next = ptr;
+    ptr-&gt;next = NULL;
+    return head;
+}
+
+//3. Insert at particular index
+struct Node * insertAt(struct Node * head, int posi, int data){
+    struct Node * p = createNode();
+    p-&gt;data = data;
+    struct Node * q = head;
+    int i = 0;
+    while (i&lt;posi-1)
+    {
+        q = q-&gt;next;
+        i++;
+    }
+    p-&gt;next = q-&gt;next;
+    q-&gt;next = p;
+    return head;
+}
+
+//4. Insert after a node 
+struct Node * insertAfter(struct Node * head, int datain, int newdata){
+    struct Node * p = createNode();
+    p-&gt;data = newdata;
+    struct Node * q = head;
+    while (q-&gt;data != datain)
+    {
+        q = q-&gt;next;
+    }
+    p-&gt;next = q-&gt;next;
+    q-&gt;next = p;
+    return head;
+    
+}
+            </code></pre>
+        </div>
+
+        <br>
+        <h3>3. Deletion</h3>
+        <div class="container">
+            <pre><code class="language-cpp">//1. Delete the first node
+struct Node * deleteStart(struct Node * head){
+    struct Node * p = createNode();
+    struct Node * q = head;
+    p = q-&gt;next;
+    free(q);
+    return p;
+}
+
+//2.Delete the last node
+struct Node * deleteEnd(struct Node * head){
+    struct Node * p = head; 
+    struct Node * q = head-&gt;next; 
+    while (q-&gt;next != NULL)
+    {
+        p = p-&gt;next;
+        q = q-&gt;next;
+    }
+    free(q);
+    p-&gt;next = NULL;
+    return head;
+}
+
+//3. Delete a node at particular index
+struct Node * deleteAt(struct Node * head, int index){
+    struct Node * p = head;
+    struct Node * q  = head-&gt;next;
+    int i = 0;
+    while (i != (index-1))
+    {
+        p = p-&gt;next;
+        q = q-&gt;next;
+        i++;
+    }
+    p-&gt;next = q-&gt;next;
+    free(q);
+    return head;
+}
+
+//4. Delete a node after a particular node
+struct Node * deleteAfter(struct Node * head, int value){
+    struct Node * p = head;
+    struct Node * q = head-&gt;next;
+    while (p-&gt;data != value)
+    {
+        p = p-&gt;next;
+        q = q-&gt;next;
+    }
+    p-&gt;next = q-&gt;next;
+    free(q);
+    return head;
+}
+            </code></pre>
+        </div>
+    </div>
+</body>
+</html>
