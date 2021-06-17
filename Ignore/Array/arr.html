@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../content.css">
+    <link rel="stylesheet" href="../prism.css">
+    <script src="../prism.js"></script>
+    <title>Array</title>
+</head>
+<body>
+    <nav>
+        Array
+    </nav>
+    <div class="super">
+        <h4>Implementation</h4>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int arr[5] = {0, 1, 2, 3, 4};
+    int size = 5;
+    return 0;
+}
+            </code></pre>
+        </div>
+        <br>
+
+        <h4>Functions</h4><br>
+
+
+        <h3>1. Traversal</h3>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+void display(int arr[], int size){
+    for (int i = 0; i &lt; size; i++)
+    {
+        cout&lt;arr[i]&lt;&lt;" ";
+    }
+    cout&lt;&lt;"\n";
+}
+
+int main(){
+    int arr[5] = {0, 1, 2, 3, 4};
+    int size = 5;
+    display(arr, size);
+    return 0;
+}
+            </code></pre>
+        </div>
+
+        <br>
+        <h3>2. Linear Search</h3>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+int search(int arr[], int size, int number){
+    for (int i = 0; i &lt; size; i++)
+    {
+        if (arr[i] == number)
+        {
+            return i;
+        }
+        
+    }
+    return -1;
+}
+
+int main(){
+    int arr[] = {5, 1, 3, 2, 7, 15};
+    int size = 6;
+    int num = 7;
+    cout&lt;&lt;search(arr, size, num);
+
+    return 0;
+}
+            </code></pre>
+        </div>
+
+        <br>
+        <h3>3. Binary Search</h3>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+int binarySearch(int arr[], int size, int value){
+    int low = 0, mid;
+    int high = size - 1;
+
+    while(low &lt;= high){
+    mid = (low + high)/2;
+        if (value == arr[mid])
+        {
+            return mid;
+        }
+        if (value &gt; arr[mid])
+        {
+            low = mid + 1;
+        }
+        else
+        {
+            high = mid - 1;
+        }
+    }
+    return -1;
+}
+
+int main(){
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int val = 10;
+    cout&lt;&lt;binarySearch(arr, 10, val);
+
+    return 0;
+}
+            </code></pre>
+        </div>
+
+        <br>
+        <h3>4. Insertion</h3>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+void display(int arr[], int size){
+    for (int i = 0; i &lt; size; i++)
+    {
+        cout&lt;&lt;arr[i]&lt;&lt;" ";
+    }
+    cout&lt;&lt;"\n";
+}
+
+int insertArr(int arr[], int size, int element, int index, int capacity){
+    if (size &gt;= capacity)
+    {
+        return -1;
+    }
+    for (int i = size-1; i &gt;=  index; i--)
+    {
+        arr[i+1] = arr[i];
+    }
+    arr[index] = element;
+    return 1;
+    
+}
+
+int main(){
+    int arr[100] = {5, 1, 3, 2, 7, 15};
+    int size = 6, capacity = 100, index, element;
+
+    display(arr, size);
+
+    cout&lt;&lt;"Enter element : "; cin&gt;&gt;element; cout&lt;&lt;"Enter index : "; cin&gt;&gt;index;
+
+    insertArr(arr, size, element, index, capacity);
+    size++;
+
+    display(arr, size);
+
+    return 0;
+}
+            </code></pre>
+        </div>
+
+        <br>
+        <h3>5. Deletion</h3>
+        <div class="container">
+            <pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+void display(int arr[], int size){
+    for (int i = 0; i &lt; size; i++)
+    {
+        cout&lt;&lt;arr[i]&lt;&lt;" ";
+    }
+    cout&lt;&lt;"\n";
+}
+
+void deleteArr(int arr[], int size, int index){
+    for (int i = index; i &lt; size - 1; i++)
+    {
+        arr[i] = arr[i+1];
+    }
+    
+}
+
+int main(){
+    int arr[100] = {5, 1, 3, 2, 7, 15};
+    int size = 6, index = 5;
+    display(arr, size);
+    deleteArr(arr, size, index);
+    size--;
+    display(arr, size);
+    return 0;
+}
+            </code></pre>
+        </div>
+    </div>
+</body>
+</html>
